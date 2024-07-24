@@ -3,7 +3,13 @@ body {
     background-color: #1c1c1c;
     color: #f0f0f0;
     margin: 0;
-    overflow: auto; 
+    overflow: auto;
+    animation: backgroundChange 10s infinite alternate;
+}
+
+@keyframes backgroundChange {
+    0% { background-color: #1c1c1c; }
+    100% { background-color: #333; }
 }
 
 .container {
@@ -17,20 +23,35 @@ body {
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
     margin-bottom: 20px;
     color: #ff4655;
+    animation: textGlow 1.5s infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px #ff4655, 0 0 20px #ff4655; }
+    100% { text-shadow: 0 0 20px #ff4655, 0 0 30px #ff4655; }
 }
 
 .selector {
     margin-bottom: 20px;
+    animation: fadeIn 1s ease-out 0.5s;
+    animation-fill-mode: both;
 }
 
 label {
     font-size: 1.2em;
     margin-right: 10px;
+    transition: color 0.3s ease;
 }
 
 select, button {
@@ -39,6 +60,12 @@ select, button {
     margin-top: 10px;
     border: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+select:hover {
+    background-color: #fdb3b3;
+    transform: scale(1.05);
 }
 
 button {
@@ -47,30 +74,28 @@ button {
     color: white;
     margin: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    animation: buttonPulse 1.5s infinite;
+}
+
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 button:hover {
     background-color: #e84347;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 #result {
     margin-top: 20px;
+    animation: fadeIn 1s ease-out;
 }
 
 .agent {
     margin: 10px 0;
     font-size: 1.1em;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-out;
 }
 
 span {
@@ -86,11 +111,28 @@ span {
     height: 250px; 
     margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.agent-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
 .agent-card img {
     width: 100%;
     height: auto;
+    transition: transform 0.3s ease;
+}
+
+.agent-card:hover img {
+    transform: scale(1.1);
 }
 
 .agent-card .agent-name {
@@ -99,4 +141,71 @@ span {
     color: #ff4655;
     font-weight: bold;
     text-align: center;
+    transition: background 0.3s ease;
+}
+
+.agent-card:hover .agent-name {
+    background: #555;
+    color: #fff;
+    text-shadow: 0 0 5px #ff4655;
+}
+
+footer {
+    background: #2a2a2a;
+    padding: 10px;
+    text-align: center;
+    color: #f0f0f0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
+    animation: footerSlideIn 1s ease-out;
+}
+
+@keyframes footerSlideIn {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+footer a {
+    color: #ff4655;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e84347;
+    text-shadow: 0 0 5px #ff4655;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #ff4655;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff4655;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e84347;
 }
